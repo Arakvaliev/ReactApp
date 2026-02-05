@@ -1,10 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import App from './App'
-import { HarryPotter, LordOfTheRings } from "./Component"
+import App from './containers/App'
+import './styles/styles.css'
 
-createRoot(document.getElementById('root')).render(
-  <App>
-    <HarryPotter />
-    <LordOfTheRings/>
-  </App>
-  )
+createRoot(document.getElementById('root')).render(<App/>)
