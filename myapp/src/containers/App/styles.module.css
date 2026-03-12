@@ -1,11 +1,11 @@
 .filmHeader {
-    color:navy
+  color: navy;
 }
 
 .picture {
-    width: 700px;
-    height: 350px;
-    background-image: url(./img/13067.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
+  width: 700px;
+  height: 350px;
+  background-image: url(./img/13067.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
