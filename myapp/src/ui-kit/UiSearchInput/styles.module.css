@@ -1,0 +1,11 @@
+.searchInput {
+  margin-bottom: 20px;
+}
+
+.searchInput :global(.MuiOutlinedInput-root) {
+  border-radius: 8px;
+}
+
+.searchInput :global(.MuiOutlinedInput-root:hover) {
+  background-color: rgba(0, 0, 0, 0.02);
+}

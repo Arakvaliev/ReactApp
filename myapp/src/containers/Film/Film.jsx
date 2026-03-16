@@ -7,6 +7,18 @@ import {
   removeFromFavorites,
 } from "../../store/favoritesReducer";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  Button,
+  Typography,
+  Paper,
+  Box,
+  IconButton,
+  Link,
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import CloseIcon from "@mui/icons-material/Close";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const Film = () => {
   const [data, setData] = useState([]);
@@ -51,30 +63,49 @@ const Film = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <Box className={styles.wrapper}>
       {data && (
-        <div>
-          <div>{data.nameRu}</div>
-          <img className={styles.img} src={data.posterUrl} alt="" />
-          <p>{data.description}</p>
-          <a
-            href={
-              "https://kinopoiskapiunofficial.tech/api/v2.2/films/" + params.id
-            }
-            target="_blank"
-          >
-            Ссылка на кинопоиск
-          </a>
-          <button onClick={onClose}>Назад</button>
+        <Paper elevation={3} className={styles.paper}>
+          <Box className={styles.header}>
+            <IconButton onClick={onClose} color="primary" aria-label="назад">
+              <ArrowBackIcon />
+            </IconButton>
+            <Typography variant="h4" component="h1" className={styles.title}>
+              {data.nameRu}
+            </Typography>
+            <IconButton
+              onClick={isFavorite ? onFavoritesRemoved : onFavoritesAdd}
+              color={isFavorite ? "error" : "default"}
+              aria-label={isFavorite ? "удалить из избранного" : "добавить в избранное"}
+            >
+              {isFavorite ? <CloseIcon /> : <FavoriteBorderIcon />}
+            </IconButton>
+          </Box>
 
-          {isFavorite ? (
-            <button onClick={onFavoritesRemoved}>Удалить из избранного</button>
-          ) : (
-            <button onClick={onFavoritesAdd}>Добавить в избранное</button>
-          )}
-        </div>
+          <Box className={styles.content}>
+            <img className={styles.img} src={data.posterUrl} alt={data.nameRu} />
+            
+            <Box className={styles.info}>
+              <Typography variant="body1">
+                {data.description}
+              </Typography>
+              
+              <Button
+                component={Link}
+                href={"https://kinopoiskapiunofficial.tech/api/v2.2/films/" + params.id}
+                target="_blank"
+                variant="contained"
+                color="primary"
+                endIcon={<OpenInNewIcon />}
+                className={styles.linkButton}
+              >
+                Открыть на Кинопоиске
+              </Button>
+            </Box>
+          </Box>
+        </Paper>
       )}
-    </div>
+    </Box>
   );
 };
 
